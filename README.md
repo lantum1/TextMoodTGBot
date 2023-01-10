@@ -1,2 +1,5 @@
 # TextMoodTGBot
-A Telegram Bot that can define mood of any text you want using DistilBERT model
+Телеграм Бот, определяющий настроение любого текста с помощью модели DistilBERT.
+
+# Структура проекта
+
