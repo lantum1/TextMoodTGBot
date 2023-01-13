@@ -18,9 +18,9 @@
 - [server](server/server.py) - Сервер с инференсом внутри
 
 ### Обучение
-[train](/training) - Обучение и инференс сети DistilBERT
+[training](/training) - Обучение и инференс сети DistilBERT
 
-- [training](/training/train.ipynb) - Обучение сети и сохранение модели
+- [train](/training/train.ipynb) - Обучение сети и сохранение модели
 - [inference](/training/inference.ipynb) - Инференс модели
 
 ### Архитектура
