@@ -61,7 +61,7 @@ kafka=Connect_Kafka('sendMessage','recieveMessage','broker:29090') #Создае
 producer=kafka.connect_kafka_producer() #Создаем продюсер
 consumer=kafka.connect_kafka_consumer() #Создаем консьюмер
 kafka_functions=Kafka_Functions(producer,consumer) #Создаем объект, через который впоследствии будем вызывать методы для работы с продюсером и консьюмером кафки
-initialised_model=InitialiseModel(".//checkpoint-6000//") # Создаем объект класса с "инициализрованной" моделью.
+initialised_model=InitialiseModel(".//model//") # Создаем объект класса с "инициализрованной" моделью.
 config,tokenizer,model=initialised_model.return_model() #Возвращаем конфиг, токенайзер и модель
 
 for message in consumer: #Цикл, который будет постоянно (пока жив брокер) ожидать появление сообщения, принимать его, обрабатывать с помощью нейросети и отсылать клиенту через вызов метода publish_message

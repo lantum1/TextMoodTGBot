@@ -5,6 +5,17 @@ networks:
     name: rmoff_kafka
     driver: bridge
 services:
+  download-model:
+    image: download-model
+    build: download-model/
+    networks:
+     - rmoff_kafka
+    entrypoint:
+     - bash
+     - -c
+     - |
+       echo 'Downloading our pretrained model...'
+       
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
     container_name: zookeeper
@@ -58,6 +69,7 @@ services:
     build: bot-server/
     depends_on:
      - broker
+     - download-model
     networks: 
      - rmoff_kafka
     entrypoint:
