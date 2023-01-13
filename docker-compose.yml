@@ -5,17 +5,6 @@ networks:
     name: rmoff_kafka
     driver: bridge
 services:
-  download-model:
-    image: download-model
-    build: download-model/
-    networks:
-     - rmoff_kafka
-    entrypoint:
-     - bash
-     - -c
-     - |
-       echo 'Downloading our pretrained model...'
-       
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
     container_name: zookeeper
@@ -49,9 +38,9 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       KAFKA_CREATE_TOPICS: "sendMessage:1:1,recieveMessage:1:1"
   
-  bot-client:
-     container_name: bot-client
-     build: bot-client/
+  bot:
+     container_name: bot
+     build: bot/
      depends_on:
       - broker
      networks: 
@@ -62,14 +51,13 @@ services:
       - |
         echo 'Giving Kafka a bit of time to start up…'
         sleep 20
-        python "./bot-client.py"
+        python "./bot.py"
 
-  bot-server:
-    container_name: bot-server
-    build: bot-server/
+  server:
+    container_name: server
+    build: server/
     depends_on:
      - broker
-     - download-model
     networks: 
      - rmoff_kafka
     entrypoint:
@@ -77,5 +65,5 @@ services:
      - -c 
      - |
        echo 'Giving Kafka a bit of time to start up…'
-       sleep 20
-       python "./bot-server.py"
+       sleep 10
+       python "./server.py"
